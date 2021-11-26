@@ -1,48 +1,38 @@
 #include <iostream>
 #include <vector>
-#include <iostream>
+#include <set>
+
 using namespace std;
 
-int busca_binaria(vector<int> & vet, int n, int item){
-  int inicio = 0; 
-  int fim = n - 1; 
-  int contador = 0; 
-  while (inicio <= fim){
-    int meio = (inicio + fim);
-    contador = contador + 1;
-    if (vet[meio] == item){
-      break;         
-    }
-    else{
-      if (vet[meio] > item){
-        fim = meio - 1;
-      }
-      else{
-        inicio = meio + 1;
-      }
-    }
-  }
-  return contador;
-}
-
-void showVector(vector<int> & vet, int n){
-    for(int i = 0; i < n; i++){
-        if(i == n - 1){
-            cout << vet[i] << endl;
-            break;
+void showNewQueue(vector<int> & queue, set<int> & leftQueue, int sizeQueue){
+    for(int i = 0; i < sizeQueue; i++){
+        if(leftQueue.find(queue[i]) == leftQueue.end()){
+            cout << queue[i]<<" ";
         }
-        cout << vet[i] << " ";
+        if(i == sizeQueue - 1){
+            cout << endl;
+        }    
     }
 }
 
 int main(){
-  vector<int> fila;
-  int n, value;
-  cin >> n;
-  for(int i = 0; i < n; i++){
-    cin >> value;
-    fila.push_back(value);
-  }
-  showVector(fila, n);
-  cout << busca_binaria(fila, n, 4);
+    int sizeQueue, sizeLeft, value;
+    vector<int> queue;
+    set<int> leftQueue;
+
+    cin>>sizeQueue;
+    for (int i = 0; i < sizeQueue; i++){
+        cin >> value;
+        queue.push_back(value);
+    }
+
+    cin>>sizeLeft;
+    for (int i = 0; i < sizeLeft; i++){
+        cin >> value;
+        leftQueue.insert(value);
+    }
+    
+    showNewQueue(queue, leftQueue, sizeQueue);
+    
+    return 0;
 }
