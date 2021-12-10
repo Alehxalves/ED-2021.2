@@ -56,7 +56,7 @@ void printVector(int * freq, int n){
 int main(){
     vector<int> vet;
     int freq[2];
-    
+
     int n, value;
     cin >> n;
     for(int i = 0; i < n; i++){

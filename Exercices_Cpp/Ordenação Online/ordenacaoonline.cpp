@@ -1,7 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <string>
-#include <sstream>
 using namespace std;
 
 void merge(vector<int> & vet, int start, int mid, int end){
@@ -9,7 +7,7 @@ void merge(vector<int> & vet, int start, int mid, int end){
     W.resize(end - start + 1);
 
     int i = start;
-    int j = mid+1;
+    int j = mid + 1;
     int k = 0;
 
     while(i <= mid && j <= end){
@@ -35,34 +33,26 @@ void mergesort(vector <int> & vet, int start, int end){
         mergesort(vet, mid + 1, end);
         merge(vet, start, mid, end);    
     }
-}
-
-int compara_figurinhas(vector<int> & colec1, vector<int> & colec2){
-    if(colec1 == colec2)
-        return 1;
-    else    
-        return 0;
-}
+} 
 
 int main(){
-    vector<int> colec_bruno, colec_getulio;
-    int n, value;
+    vector<int> vet;
+    int n, op, value;
+    int size;
     cin >> n;
     for(int i = 0; i < n; i++){
-        cin >> value;
-        colec_bruno.push_back(value);
+        cin >> op >> value;
+        if(op == 1){
+            vet.push_back(value);
+            size = vet.size();
+            if(n > 1){
+                merge(vet, 0, (size / 2), size - 1);
+                mergesort(vet, 0 , size - 1);
+            }
+        }
+        else if(op == 2){
+            cout << vet[value] << endl;
+        }
     }
-    for(int i = 0; i < n; i++){
-        cin >> value;
-        colec_getulio.push_back(value);
-    }
-    // Coleção de bruno
-    merge(colec_bruno, 0, (n / 2) - 1, n - 1);
-    mergesort(colec_bruno, 0 , n - 1);
-    // Coleção de getúlio
-    merge(colec_getulio, 0, (n / 2) - 1, n - 1);
-    mergesort(colec_getulio, 0 , n - 1);
-
-    cout << compara_figurinhas(colec_bruno, colec_getulio) << endl;
     return 0;
 }
