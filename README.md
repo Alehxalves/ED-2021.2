@@ -1,2 +1,2 @@
-# Estrutura de dados UFC 
+# Disciplina de Estrutura de dados UFC 
 
